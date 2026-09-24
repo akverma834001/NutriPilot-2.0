@@ -57,17 +57,17 @@ export const ProgressView: React.FC = () => {
       <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-xs uppercase tracking-wider text-brand-400 font-bold font-mono">
-              Longitudinal Analytics
+            <span className="text-xs uppercase tracking-wider text-brand-400 font-bold">
+              Long-Term Trends
             </span>
             <span className="text-slate-600">•</span>
-            <ProvenanceBadge infoType="CALCULATED" source="Multi-day Trajectory" confidence="high" />
+            <span className="text-xs text-brand-300 font-medium">Daily & Weekly Progress</span>
           </div>
           <h1 className="text-2xl font-extrabold text-white font-heading mt-1">
-            Progress & Longitudinal Trends
+            Your Progress & Trends
           </h1>
           <p className="text-xs text-slate-400 mt-0.5">
-            Smooth trends and rolling averages prevent reactive over-correction from single-day fluctuations.
+            Track your weight, calories, protein, and activity with smooth averages so single-day changes don't stress you out.
           </p>
         </div>
 
@@ -133,7 +133,9 @@ export const ProgressView: React.FC = () => {
                   Rolling average dampens daily water, sodium & bowel fluctuations to reveal true lean tissue trend.
                 </p>
               </div>
-              <ProvenanceBadge infoType="CALCULATED" source="Weight Filter" confidence="high" />
+              <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-medium">
+                7-Day Trend
+              </span>
             </div>
 
             <div className="h-72 w-full pt-4">
@@ -186,7 +188,9 @@ export const ProgressView: React.FC = () => {
                   Comparing actual intake against activity-adjusted caloric needs.
                 </p>
               </div>
-              <ProvenanceBadge infoType="CALCULATED" source="Energy Accounting" confidence="high" />
+              <span className="text-xs px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium">
+                Daily Energy
+              </span>
             </div>
 
             <div className="h-72 w-full pt-4">
@@ -217,7 +221,9 @@ export const ProgressView: React.FC = () => {
                   Daily grams of protein logged vs 1.9g/kg lean muscle gain target.
                 </p>
               </div>
-              <ProvenanceBadge infoType="CALCULATED" source="Macro Engine" confidence="high" />
+              <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-medium">
+                Target: 130g/day
+              </span>
             </div>
 
             <div className="h-72 w-full pt-4">
@@ -248,7 +254,9 @@ export const ProgressView: React.FC = () => {
                   Measured by connected wearable pedometer.
                 </p>
               </div>
-              <ProvenanceBadge infoType="MEASURED" source="Wearable Sensor" confidence="high" />
+              <span className="text-xs px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/20 font-medium">
+                Pedometer Steps
+              </span>
             </div>
 
             <div className="h-72 w-full pt-4">
@@ -278,7 +286,9 @@ export const ProgressView: React.FC = () => {
                   Tracked by wearable sleep accelerometer.
                 </p>
               </div>
-              <ProvenanceBadge infoType="MEASURED" source="Sleep Sensor" confidence="high" />
+              <span className="text-xs px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-medium">
+                Sleep Tracker
+              </span>
             </div>
 
             <div className="h-72 w-full pt-4">

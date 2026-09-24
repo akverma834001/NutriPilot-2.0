@@ -125,20 +125,16 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           )}
 
-          {/* Offline Mode Toggle Simulator */}
-          <button
-            type="button"
-            onClick={toggleOfflineMode}
-            className={`p-2 rounded-xl border text-xs flex items-center gap-1.5 transition-all ${
-              state.isOffline
-                ? 'bg-amber-500/20 border-amber-500 text-amber-300'
-                : 'bg-slate-900/90 border-slate-750 text-slate-400 hover:text-slate-200'
-            }`}
-            title={state.isOffline ? 'Offline mode active (queueing actions)' : 'Online mode'}
-          >
-            {state.isOffline ? <WifiOff className="w-4 h-4 text-amber-400" /> : <Wifi className="w-4 h-4" />}
-            {state.isOffline && <span className="text-[10px] font-bold">Offline</span>}
-          </button>
+          {/* Offline indicator only if actually offline */}
+          {state.isOffline && (
+            <div
+              className="px-2.5 py-1 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs flex items-center gap-1.5"
+              title="You are currently offline. Changes will sync when reconnected."
+            >
+              <WifiOff className="w-3.5 h-3.5 text-amber-400" />
+              <span className="text-[11px] font-semibold hidden sm:inline">Offline</span>
+            </div>
+          )}
 
           {/* Segmented Theme Toggle */}
           <button

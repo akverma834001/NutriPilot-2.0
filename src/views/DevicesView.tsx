@@ -64,7 +64,7 @@ export const DevicesView: React.FC = () => {
     try {
       const res = await connectRealBluetoothWatch();
       if (res.success) {
-        setBleSuccessMsg(`Successfully connected to ${res.deviceName || 'Bluetooth Watch'}! Live sensor telemetry is now streaming.`);
+        setBleSuccessMsg(`Successfully connected to ${res.deviceName || 'Bluetooth Watch'}! Live steps and heart rate are now streaming.`);
       } else {
         setBleError(res.error || 'Bluetooth pairing was cancelled or timed out.');
       }
@@ -85,10 +85,10 @@ export const DevicesView: React.FC = () => {
     setPairingStep('Device found: NutriPilot Demo Watch...');
     await new Promise((r) => setTimeout(r, 500));
 
-    setPairingStep('Requesting biometric telemetry permissions...');
+    setPairingStep('Requesting heart rate & pedometer permissions...');
     await new Promise((r) => setTimeout(r, 500));
 
-    setPairingStep('Synchronizing initial sensor state...');
+    setPairingStep('Synchronizing device metrics...');
     await new Promise((r) => setTimeout(r, 500));
 
     await connectDevice(provider);
@@ -112,12 +112,12 @@ export const DevicesView: React.FC = () => {
   ];
 
   const providers = [
-    { id: 'demo', name: 'NutriPilot Demo Watch', desc: 'Simulated high-fidelity telemetry for interactive demonstration', recommended: true },
-    { id: 'apple_health', name: 'Apple Health', desc: 'HealthKit integration via iOS & Apple Watch' },
-    { id: 'health_connect', name: 'Google Health Connect', desc: 'Android Health Connect Hub (Pixel, Samsung, Fitbit)' },
-    { id: 'fitbit', name: 'Fitbit', desc: 'Fitbit Web API & OS telemetry' },
-    { id: 'garmin', name: 'Garmin Connect', desc: 'Garmin Health Telemetry SDK' },
-    { id: 'samsung_health', name: 'Samsung Health', desc: 'Galaxy Watch Privileged SDK' }
+    { id: 'demo', name: 'NutriPilot Demo Watch', desc: 'Demo watch with live steps and heart rate for instant testing', recommended: true },
+    { id: 'apple_health', name: 'Apple Health', desc: 'Apple Watch & HealthKit sync' },
+    { id: 'health_connect', name: 'Google Health Connect', desc: 'Android & Google Health Connect (Pixel, Samsung, Fitbit)' },
+    { id: 'fitbit', name: 'Fitbit', desc: 'Fitbit activity and heart rate tracking' },
+    { id: 'garmin', name: 'Garmin Connect', desc: 'Garmin running and workout tracking' },
+    { id: 'samsung_health', name: 'Samsung Health', desc: 'Galaxy Watch health sync' }
   ];
 
   return (
@@ -126,21 +126,24 @@ export const DevicesView: React.FC = () => {
       <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-xs uppercase tracking-wider text-brand-400 font-bold font-mono">
-              Hardware & Sensor Ingestion
+            <span className="text-xs uppercase tracking-wider text-brand-400 font-bold">
+              Wearable & Sensor Sync
             </span>
             <span className="text-slate-600">•</span>
-            <ProvenanceBadge
-              infoType={isRealBle ? 'MEASURED' : 'ESTIMATED'}
-              source={device.name}
-              confidence="high"
-            />
+            {isConnected ? (
+              <span className="text-xs text-emerald-400 font-medium flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                {device.name} Connected
+              </span>
+            ) : (
+              <span className="text-xs text-slate-400 font-medium">Ready to Pair</span>
+            )}
           </div>
           <h1 className="text-2xl font-extrabold text-white font-heading mt-1">
-            Connect Your Watch & Wearables
+            Connect Your Watch & Devices
           </h1>
           <p className="text-xs text-slate-400 mt-0.5">
-            Real Web Bluetooth Low Energy (BLE) scanning and simulated hardware providers.
+            Connect your smartwatch via Bluetooth or use your phone's built-in motion sensor to count genuine steps.
           </p>
         </div>
 
@@ -311,7 +314,7 @@ export const DevicesView: React.FC = () => {
           </div>
         </div>
 
-        {/* Live Telemetry Display */}
+        {/* Live Motion Sensor Display */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs">
           <div className="p-3 rounded-xl bg-slate-850 border border-slate-750">
             <span className="text-slate-400 text-[11px] block">Steps Counted:</span>
@@ -321,7 +324,7 @@ export const DevicesView: React.FC = () => {
           </div>
 
           <div className="p-3 rounded-xl bg-slate-850 border border-slate-750">
-            <span className="text-slate-400 text-[11px] block">Live Magnitude:</span>
+            <span className="text-slate-400 text-[11px] block">Phone Motion Sensor:</span>
             <span className="text-lg font-bold text-emerald-400 font-mono">
               {liveMagnitude} <span className="text-xs text-slate-400">m/s²</span>
             </span>
@@ -335,7 +338,7 @@ export const DevicesView: React.FC = () => {
           </div>
 
           <div className="p-3 rounded-xl bg-slate-850 border border-slate-750 flex flex-col justify-between">
-            <span className="text-slate-400 text-[11px] block">Desktop Simulate:</span>
+            <span className="text-slate-400 text-[11px] block">Quick Add Steps:</span>
             <div className="flex items-center gap-1 mt-1">
               <button
                 type="button"

@@ -30,16 +30,14 @@ export const NutritionView: React.FC<NutritionViewProps> = ({ onOpenFoodModal })
         <div>
           <div className="flex items-center gap-2">
             <span className="text-xs uppercase tracking-wider text-brand-400 font-bold font-mono">
-              Nutrition State Engine
+              Nutrition & Macros
             </span>
-            <span className="text-slate-600">•</span>
-            <ProvenanceBadge infoType="CALCULATED" source="Deterministic Aggregator" confidence="high" />
           </div>
           <h1 className="text-2xl font-extrabold text-white font-heading mt-1">
-            Today's Nutrition & Macro Gaps
+            Today's Food & Nutrition
           </h1>
           <p className="text-xs text-slate-400 mt-0.5">
-            Macro gap calculated: Target - Consumed = Remaining. Capped strictly by deterministic formulas.
+            Keep track of your daily calories, protein, and nutrients to fuel your workouts and recovery.
           </p>
         </div>
 
@@ -50,7 +48,7 @@ export const NutritionView: React.FC<NutritionViewProps> = ({ onOpenFoodModal })
             className="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-brand-500/20"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
-            <span>Log Food Intake</span>
+            <span>Log Food</span>
           </button>
         </div>
       </div>
@@ -59,8 +57,8 @@ export const NutritionView: React.FC<NutritionViewProps> = ({ onOpenFoodModal })
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 shadow-md space-y-4">
           <h3 className="text-sm font-bold text-slate-200 flex items-center justify-between">
-            <span>Macronutrient Targets & Tracking</span>
-            <span className="text-xs font-normal text-slate-400">Muscle Recomp Goal</span>
+            <span>Macronutrient Targets</span>
+            <span className="text-xs font-normal text-slate-400">Personalized Goal</span>
           </h3>
 
           <div className="space-y-4 pt-1">
@@ -118,9 +116,8 @@ export const NutritionView: React.FC<NutritionViewProps> = ({ onOpenFoodModal })
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Droplets className="w-4 h-4 text-blue-400" />
-                <h3 className="text-sm font-bold text-slate-200">Hydration Balance</h3>
+                <h3 className="text-sm font-bold text-slate-200">Daily Hydration</h3>
               </div>
-              <ProvenanceBadge infoType="MEASURED" source="User Water Intake" confidence="high" />
             </div>
 
             <div className="flex items-baseline justify-between pt-1">
@@ -160,14 +157,13 @@ export const NutritionView: React.FC<NutritionViewProps> = ({ onOpenFoodModal })
             </div>
           </div>
 
-          {/* Budget Engine Card */}
+          {/* Budget Card */}
           <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 shadow-md space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-amber-400" />
-                <h3 className="text-sm font-bold text-slate-200">Daily Food Budget Engine</h3>
+                <h3 className="text-sm font-bold text-slate-200">Daily Food Budget</h3>
               </div>
-              <ProvenanceBadge infoType="CALCULATED" source="Budget Engine" confidence="high" />
             </div>
 
             <div className="grid grid-cols-3 gap-2 text-center text-xs pt-1">

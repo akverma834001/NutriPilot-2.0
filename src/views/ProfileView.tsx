@@ -221,17 +221,17 @@ export const ProfileView: React.FC = () => {
       <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-xs uppercase tracking-wider text-brand-400 font-bold font-mono">
-              Personal Nutrition & Activity State
+            <span className="text-xs uppercase tracking-wider text-brand-400 font-bold">
+              Your Personal Profile
             </span>
             <span className="text-slate-600">•</span>
-            <ProvenanceBadge infoType="MEASURED" source="User Profile" confidence="high" />
+            <span className="text-xs text-brand-300 font-medium">Customized Plan</span>
           </div>
           <h1 className="text-2xl font-extrabold text-white font-heading mt-1">
-            Profile Settings & Goal Planning Engine
+            Profile & Goal Settings
           </h1>
           <p className="text-xs text-slate-400 mt-0.5">
-            Update any biometric, goal, or dietary section below. NutriPilot will immediately re-plan your calories, macros, hydration, budget, and workout scheme.
+            Update your body measurements, goals, or diet preferences below to automatically personalize your daily targets.
           </p>
         </div>
 
@@ -242,7 +242,7 @@ export const ProfileView: React.FC = () => {
             className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-colors"
           >
             <Download className="w-3.5 h-3.5 text-brand-400" />
-            <span>{exportMessage ? 'Downloaded JSON ✓' : 'Export Full State JSON'}</span>
+            <span>{exportMessage ? 'Downloaded JSON ✓' : 'Backup My Data (JSON)'}</span>
           </button>
         </div>
       </div>
@@ -379,10 +379,10 @@ export const ProfileView: React.FC = () => {
             <div className="flex items-center gap-2">
               <Activity className="w-4 h-4 text-brand-400" />
               <h3 className="text-sm font-bold text-white font-heading">
-                Section 1: User Biometrics & Physiology
+                1. Body Measurements & Details
               </h3>
             </div>
-            <span className="text-xs text-slate-400">Determines BMR and caloric baseline</span>
+            <span className="text-xs text-slate-400">Used to calculate your daily energy needs</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -457,10 +457,10 @@ export const ProfileView: React.FC = () => {
             <div className="flex items-center gap-2">
               <Target className="w-4 h-4 text-amber-400" />
               <h3 className="text-sm font-bold text-white font-heading">
-                Section 2: Primary Goal & Target Weight
+                2. Fitness Goals & Target Weight
               </h3>
             </div>
-            <span className="text-xs text-slate-400">Controls energy surplus/deficit & protein</span>
+            <span className="text-xs text-slate-400">Sets your calorie target and protein goal</span>
           </div>
 
           {/* Goal Selector Cards */}
@@ -580,7 +580,7 @@ export const ProfileView: React.FC = () => {
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-rose-400" />
               <h3 className="text-sm font-bold text-white font-heading">
-                Section 3: Dietary Preferences, Allergies & Dislikes
+                3. Food Preferences & Allergies
               </h3>
             </div>
             <span className="text-xs text-slate-400">Strictly filters food recommendations</span>
@@ -760,10 +760,10 @@ export const ProfileView: React.FC = () => {
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4 text-sky-400" />
               <h3 className="text-sm font-bold text-white font-heading">
-                Section 4: Daily Schedule & Current Context
+                4. Daily Routine & Setting
               </h3>
             </div>
-            <span className="text-xs text-slate-400">Contextual recommendation filtering</span>
+            <span className="text-xs text-slate-400">Helps tailor meal convenience</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -811,10 +811,10 @@ export const ProfileView: React.FC = () => {
             <div className="flex items-center gap-2">
               <DollarSign className="w-4 h-4 text-emerald-400" />
               <h3 className="text-sm font-bold text-white font-heading">
-                Section 5: Economic Budget Engine (₹ INR)
+                5. Daily Food Budget (₹ INR)
               </h3>
             </div>
-            <span className="text-xs text-slate-400">Guarantees high-protein affordability</span>
+            <span className="text-xs text-slate-400">Ensures affordable nutrition suggestions</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

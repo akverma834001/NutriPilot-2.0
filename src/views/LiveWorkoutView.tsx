@@ -134,21 +134,26 @@ export const LiveWorkoutView: React.FC<LiveWorkoutViewProps> = ({
       <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-xs uppercase tracking-wider text-rose-400 font-bold font-mono">
-              Biometric Fitness & Telemetry Engine
+            <span className="text-xs uppercase tracking-wider text-rose-400 font-bold">
+              Workout Studio
             </span>
             <span className="text-slate-600">•</span>
-            <ProvenanceBadge
-              infoType={isWatchConnected ? 'MEASURED' : 'CALCULATED'}
-              source={isWatchConnected ? state.connectedDevice.name : 'Wearable Disconnected (0 kcal)'}
-              confidence={isWatchConnected ? 'high' : 'low'}
-            />
+            {isWatchConnected ? (
+              <span className="text-xs text-emerald-400 font-medium flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                {state.connectedDevice.name} Connected
+              </span>
+            ) : (
+              <span className="text-xs text-slate-400 font-medium">
+                Smartwatch Sync Ready
+              </span>
+            )}
           </div>
           <h1 className="text-2xl font-extrabold text-white font-heading mt-1">
-            Workout Studio & AI Periodization
+            Workout Studio & Training Planner
           </h1>
           <p className="text-xs text-slate-400 mt-0.5">
-            Count genuine smartwatch heart rate and steps during live training, or generate periodized workout plans scientifically mapped from your current weight to your target.
+            Track genuine smartwatch heart rate and steps during live training, or follow your personalized workout program.
           </p>
         </div>
 
@@ -240,10 +245,10 @@ export const LiveWorkoutView: React.FC<LiveWorkoutViewProps> = ({
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-sm font-bold text-white font-heading">
-                    Quick Start Freeform Workout
+                    Quick Start Workout
                   </h3>
                   <p className="text-xs text-slate-400 mt-0.5">
-                    Or select a periodized routine from the AI Workout Planner tab.
+                    Or choose a workout from your personalized Training Plan tab.
                   </p>
                 </div>
                 <button
@@ -251,7 +256,7 @@ export const LiveWorkoutView: React.FC<LiveWorkoutViewProps> = ({
                   onClick={() => setActiveTab('planner')}
                   className="text-xs text-brand-400 hover:text-brand-300 font-semibold flex items-center gap-1"
                 >
-                  <span>Browse Periodized Routines</span>
+                  <span>View Training Plan</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>

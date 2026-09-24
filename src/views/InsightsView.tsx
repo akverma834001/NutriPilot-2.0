@@ -33,24 +33,24 @@ export const InsightsView: React.FC = () => {
       <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-xs uppercase tracking-wider text-purple-400 font-bold font-mono">
-              Pattern Recognition Engine
+            <span className="text-xs uppercase tracking-wider text-purple-400 font-bold">
+              Weekly Trends & Habits
             </span>
             <span className="text-slate-600">•</span>
-            <ProvenanceBadge infoType="CALCULATED" source="14-Day Historical Store" confidence="high" />
+            <span className="text-xs text-purple-300 font-medium">14 Days of Tracking</span>
           </div>
           <h1 className="text-2xl font-extrabold text-white font-heading mt-1">
-            Weekly Review & Behavioral Correlations
+            Weekly Review & Personal Habits
           </h1>
           <p className="text-xs text-slate-400 mt-0.5">
-            NutriPilot only generates observations strictly supported by your longitudinal historical data.
+            Helpful insights learned from your actual daily meals, workouts, and sleep.
           </p>
         </div>
 
-        {/* Cold Start Badge */}
+        {/* Status Badge */}
         <div className="px-3.5 py-2 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold flex items-center gap-2">
           <Brain className="w-4 h-4 text-purple-400" />
-          <span>Stage 4: Personalized Behavioral Model (14 Days)</span>
+          <span>Learned from 14 Days of Your Habits</span>
         </div>
       </div>
 
@@ -87,12 +87,12 @@ export const InsightsView: React.FC = () => {
         </div>
       </div>
 
-      {/* CORE FEATURE: DATA-BACKED BEHAVIORAL OBSERVATIONS (Requirement #48) */}
+      {/* CORE FEATURE: DATA-BACKED BEHAVIORAL OBSERVATIONS */}
       <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-md space-y-4">
         <div className="flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-purple-400" />
           <h3 className="text-base font-bold text-white font-heading">
-            Data-Backed Personal Observations
+            Insights from Your Personal Habits
           </h3>
         </div>
 
@@ -102,9 +102,11 @@ export const InsightsView: React.FC = () => {
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4" />
-                <span>Protein Pacing Correlation</span>
+                <span>Protein Pacing Habit</span>
               </span>
-              <ProvenanceBadge infoType="CALCULATED" source="Historical Correlation Model" confidence="high" />
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+                Strong Pattern
+              </span>
             </div>
             <p className="text-xs text-slate-200 leading-relaxed font-medium">
               Protein intake was <strong>28% more consistent</strong> on days when your breakfast included eggs or paneer (e.g. Sep 10, 12, 14, 17, 19).
@@ -119,9 +121,11 @@ export const InsightsView: React.FC = () => {
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-blue-400 flex items-center gap-1.5">
                 <Activity className="w-4 h-4" />
-                <span>Activity & Sleep Synergy</span>
+                <span>Walking Helps Sleep</span>
               </span>
-              <ProvenanceBadge infoType="CALCULATED" source="Cross-Domain Sensor Fusion" confidence="high" />
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 border border-blue-500/20">
+                Sleep Synergy
+              </span>
             </div>
             <p className="text-xs text-slate-200 leading-relaxed font-medium">
               On days with over 8,500 steps, your sleep duration averaged <strong>7h 48m</strong> with "Good" consistency versus 6h 32m on sedentary days (&lt; 6,500 steps).
@@ -136,9 +140,11 @@ export const InsightsView: React.FC = () => {
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-purple-400 flex items-center gap-1.5">
                 <Scale className="w-4 h-4" />
-                <span>Weight Smoothing Analysis</span>
+                <span>Steady Weight Trend</span>
               </span>
-              <ProvenanceBadge infoType="CALCULATED" source="Rolling Average Engine" confidence="high" />
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                Smooth Average
+              </span>
             </div>
             <p className="text-xs text-slate-200 leading-relaxed font-medium">
               Your 7-day rolling weight average increased from <strong>67.9 kg to 68.4 kg (+0.5 kg)</strong> across the last 14 days, perfectly matching your lean surplus target rate (~0.25 kg/week).
@@ -153,9 +159,11 @@ export const InsightsView: React.FC = () => {
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
                 <Flame className="w-4 h-4" />
-                <span>Budget-to-Protein Ratio</span>
+                <span>Smart Grocery Value</span>
               </span>
-              <ProvenanceBadge infoType="CALCULATED" source="Cost Accounting Engine" confidence="high" />
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                Budget Saver
+              </span>
             </div>
             <p className="text-xs text-slate-200 leading-relaxed font-medium">
               You achieved an optimal cost-to-protein ratio of <strong>₹0.98 per gram of protein</strong> on days with farm eggs and soya pulao.

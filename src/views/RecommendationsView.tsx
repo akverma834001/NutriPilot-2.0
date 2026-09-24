@@ -63,11 +63,11 @@ export const RecommendationsView: React.FC = () => {
       <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-xs uppercase tracking-wider text-brand-400 font-bold font-mono">
+            <span className="text-xs uppercase tracking-wider text-brand-400 font-bold">
               Meal & Nutrition Ideas
             </span>
             <span className="text-slate-500">•</span>
-            <ProvenanceBadge infoType="PREDICTED" source="Nutrition Planner" confidence="high" />
+            <span className="text-xs text-brand-300 font-medium">Personalized for You</span>
           </div>
           <h1 className="text-2xl font-extrabold text-white font-heading mt-1">
             Recommended Meals for You
@@ -168,7 +168,15 @@ export const RecommendationsView: React.FC = () => {
                     <span className="text-xs text-slate-400 font-medium">
                       Context: {rec.timingContext}
                     </span>
-                    <ProvenanceBadge infoType="PREDICTED" source={rec.sourceEngine} confidence={rec.confidence} />
+                    {rec.sourceEngine === 'pantry_optimizer' ? (
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+                        Pantry Ready
+                      </span>
+                    ) : (
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-brand-500/10 text-brand-300 border border-brand-500/20">
+                        Nutrition Match
+                      </span>
+                    )}
                   </div>
                   <h3 className="text-xl font-bold text-white font-heading">{rec.title}</h3>
                   <p className="text-xs text-slate-400">{rec.description}</p>

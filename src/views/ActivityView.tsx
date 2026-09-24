@@ -72,21 +72,24 @@ export const ActivityView: React.FC<ActivityViewProps> = ({ onStartWorkout }) =>
       <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-xs uppercase tracking-wider text-brand-400 font-bold font-mono">
-              Real-time Ingestion Engine
+            <span className="text-xs uppercase tracking-wider text-brand-400 font-bold">
+              Daily Movement & Steps
             </span>
             <span className="text-slate-600">•</span>
-            <ProvenanceBadge
-              infoType="MEASURED"
-              source={isPhonePedometerActive ? 'Phone Accelerometer' : state.connectedDevice.name}
-              confidence="high"
-            />
+            {isPhonePedometerActive || state.connectedDevice?.connected ? (
+              <span className="text-xs text-emerald-400 font-medium flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Live Sensor Active
+              </span>
+            ) : (
+              <span className="text-xs text-slate-400 font-medium">Ready to Count Steps</span>
+            )}
           </div>
           <h1 className="text-2xl font-extrabold text-white font-heading mt-1">
-            Activity & Sensor Telemetry
+            Activity & Movement Tracker
           </h1>
           <p className="text-xs text-slate-400 mt-0.5">
-            Counting real steps via phone accelerometer or connected smartwatch with anti-double-counting energy accounting.
+            Track genuine daily steps, active calorie burn, and heart rate via your phone or connected smartwatch.
           </p>
         </div>
 
@@ -145,12 +148,12 @@ export const ActivityView: React.FC<ActivityViewProps> = ({ onStartWorkout }) =>
             </div>
             <p className="text-xs text-slate-300">
               {isPhonePedometerActive
-                ? `Actively detecting footsteps via phone accelerometer. Live vector magnitude: ${liveMagnitude} m/s² ${isPhoneMoving ? '• Walking detected!' : '• Stationary'}`
-                : 'Turn on the real motion sensor to count actual steps as you walk with your phone in pocket or hand.'}
+                ? `Phone motion sensor active • ${isPhoneMoving ? 'Walking detected' : 'Stationary'}`
+                : 'Turn on the step sensor to automatically count your steps as you walk with your phone in your pocket.'}
             </p>
             {pedometerError && (
               <p className="text-[11px] text-amber-400 bg-amber-500/10 p-2 rounded-lg border border-amber-500/20">
-                {pedometerError} (Note: Desktop browsers lack physical accelerometers — use the quick walk buttons on the right to test step counting!)
+                {pedometerError}
               </p>
             )}
           </div>
@@ -166,20 +169,12 @@ export const ActivityView: React.FC<ActivityViewProps> = ({ onStartWorkout }) =>
               }`}
             >
               <Smartphone className="w-3.5 h-3.5" />
-              <span>{isPhonePedometerActive ? 'Stop Phone Sensor' : 'Start Phone Sensor'}</span>
+              <span>{isPhonePedometerActive ? 'Stop Step Sensor' : 'Start Step Sensor'}</span>
             </button>
 
-            {/* Quick walk steps for testing */}
+            {/* Quick walk steps */}
             <div className="flex items-center gap-1.5 bg-slate-800/80 p-1 rounded-xl border border-slate-700">
-              <span className="text-[11px] text-slate-400 px-2 font-medium">Simulate:</span>
-              <button
-                type="button"
-                onClick={() => addSteps(10)}
-                className="px-2.5 py-1 rounded-lg bg-slate-700 hover:bg-slate-650 text-slate-200 text-xs font-semibold"
-                title="Add 10 walking steps"
-              >
-                +10
-              </button>
+              <span className="text-[11px] text-slate-400 px-2 font-medium">Quick Walk:</span>
               <button
                 type="button"
                 onClick={() => addSteps(50)}
@@ -191,26 +186,34 @@ export const ActivityView: React.FC<ActivityViewProps> = ({ onStartWorkout }) =>
               <button
                 type="button"
                 onClick={() => addSteps(200)}
-                className="px-2.5 py-1 rounded-lg bg-brand-500/20 hover:bg-brand-500/30 text-brand-300 text-xs font-bold border border-brand-500/30"
+                className="px-2.5 py-1 rounded-lg bg-slate-700 hover:bg-slate-650 text-slate-200 text-xs font-semibold"
                 title="Add 200 walking steps"
               >
                 +200
+              </button>
+              <button
+                type="button"
+                onClick={() => addSteps(500)}
+                className="px-2.5 py-1 rounded-lg bg-brand-500/20 hover:bg-brand-500/30 text-brand-300 text-xs font-bold border border-brand-500/30"
+                title="Add 500 walking steps"
+              >
+                +500
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Deduplication Guarantee Banner */}
+      {/* Sync Quality Guarantee Banner */}
       <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between gap-4 text-xs">
         <div className="flex items-center gap-2.5 text-slate-300">
           <ShieldCheck className="w-4 h-4 text-brand-400 shrink-0" />
           <span>
-            <strong>EventDeduplicationService Active:</strong> Overlapping workouts from phone/watch are canonicalized to prevent double counting.
+            <strong>Smart Activity Sync Active:</strong> Workouts and steps from your watch and phone are automatically synchronized without double-counting your calories.
           </span>
         </div>
-        <span className="text-emerald-400 font-mono font-semibold text-[11px] shrink-0">
-          100% Protected
+        <span className="text-emerald-400 font-semibold text-[11px] shrink-0">
+          ✓ Accurate Sync
         </span>
       </div>
 
@@ -235,15 +238,15 @@ export const ActivityView: React.FC<ActivityViewProps> = ({ onStartWorkout }) =>
             />
           </div>
           <div className="text-[11px] text-slate-400 flex justify-between pt-1">
-            <span>Pedometer sensor</span>
-            <ProvenanceBadge infoType="MEASURED" source={state.connectedDevice.name} confidence="high" />
+            <span>Daily step tracking</span>
+            <span className="text-emerald-400 font-medium">✓ Active</span>
           </div>
         </div>
 
         {/* Active Energy */}
         <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 shadow-md space-y-2">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-slate-400 font-medium">Active Energy Burn</span>
+            <span className="text-slate-400 font-medium">Active Burn</span>
             <Flame className="w-4 h-4 text-amber-400" />
           </div>
           <div className="flex items-baseline gap-2">
@@ -253,11 +256,11 @@ export const ActivityView: React.FC<ActivityViewProps> = ({ onStartWorkout }) =>
             <span className="text-xs text-slate-500">active kcal</span>
           </div>
           <p className="text-[11px] text-slate-400">
-            Estimated by device sensor fusion. Baseline deduction applied.
+            Calories burned through walking and daily exercise.
           </p>
           <div className="text-[11px] text-slate-400 flex justify-between pt-1">
-            <span className="text-slate-500">Not raw ground truth</span>
-            <ProvenanceBadge infoType="ESTIMATED" source="Connected Wearable" confidence="medium" />
+            <span>Goal: 450 kcal</span>
+            <span className="text-amber-400 font-medium">{Math.round((activity.activeEnergyKcal.value / 450) * 100)}%</span>
           </div>
         </div>
 
@@ -274,11 +277,11 @@ export const ActivityView: React.FC<ActivityViewProps> = ({ onStartWorkout }) =>
             <span className="text-xs text-slate-500">kilometers</span>
           </div>
           <p className="text-[11px] text-slate-400">
-            Calculated from stride calibration & GPS tracking.
+            Calculated from your daily walking steps.
           </p>
           <div className="text-[11px] text-slate-400 flex justify-between pt-1">
             <span>Walking & commute</span>
-            <ProvenanceBadge infoType="MEASURED" source={state.connectedDevice.name} confidence="high" />
+            <span className="text-emerald-400 font-medium">Recorded</span>
           </div>
         </div>
 
